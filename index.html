@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="web.css">
+</head>
+<body>
+
+<!-- Script for redirecting -->
+<!-- <script type="text/javascript" src="../files/redirection.js"></script> -->
+<div class="paper_content">
+    <div class="title_paper">Towards an Assisted Frailty Assessment System for Elderly People (AFASEP)
+
+    </div>
+        <p><i>Anonymous Authors.</i></p>
+       
+    <p><b>Abstract:</b> Frailty assessment plays a pivotal role in healthcare, particularly in the context of treatment decisions for older adults, including those in oncology. Currently, the process involves laborious and time-consuming exercises measured using stopwatches. This paper introduces a novel methodology that employs depth camera-derived skeletal data to measure standard total time and additional frailty-related metrics. The study presents results from a cohort of 22 elderly participants, with assessments conducted by both medical professionals and our robotic system. The findings demonstrate the precision of our approach in aiding physicians in frailty assessment. Moreover, we establish that the supplementary metrics we propose contribute to enhanced frailty evaluations. 
+        This research represents a significant stride towards the advancement of social robotics in healthcare, offering potential improvements in patient care and clinical decision-making. 
+    </p>
+    <p><b>Short Introduction:</b> 
+        In this work, it is defined and validated a method to automate the commonly used Short Physical Performance Battery (SPPB) and the Timed Up and Go (TUG) tests.
+        The method provides the times and additional and frailty-related metrics that cannot be seen with the human eye.
+        To do so, a ZED2i camera with its SDK is used to extract and track the skeleton of the patient during the test execution.
+    </p>
+    <p>
+        The different individual tests consist on:
+        <ul>
+            <li>(SPPB) Standing Balance: The patient has to maintain
+                balance for ten seconds with the feet in three predetermined
+                positions: together, tandem, and semi-tandem.</li>
+            <li>(SPPB) Gait Speed: The patient has to walk six meters
+                in a straight line. The first meter corresponds to acceleration
+                and the last one to deceleration. Time is taken on the constant
+                speed phase corresponding to the 4 central meters.</li>
+            <li>(SPPB) 5 Times Sit-Stand: It involves standing up and
+                sitting down from a chair five times while measuring the
+                total time taken.</li>
+            <li>(TUG) Timed Up and Go: It consists of standing
+                up from a chair, walking three meters towards an object,
+                surrounding it, walking back, and sitting in the same chair.</li>
+        </ul>
+    </p>
+
+    <p>
+        A distribution example for the tests is shown in Figure 1.
+    </p>
+
+    <center>
+    <img src="img/test_distribution_arrows.png" width = "400" height="450" />
+    <figcaption><b>Figure 1.</b> Space distribution and representation for the execution of the SPPB and TUG tests.
+    </center>
+    <p>&nbsp;</p>
+    <h2>Tracking System Validation </h2>
+
+    <p>&nbsp;</p>
+    <p>Here, the obtained metrics from the tests, captured with the ZED2i camera using its SDK, are validated using the OptiTrack system as a ground truth. To conduct this validation, 7 volunteers performed each
+        of the tests three times wearing the OptiTrack suit with 41
+        markers. The skeleton 3D points were recorded using both
+        ZED SDK and Mediapipe algorithms. The volunteers were
+        asked to vary their behavior in each run of the tests to have
+        more variance between the samples. The following results represent the metrics of the profitable runs where metrics could be acquired.</p>
+    <p>&nbsp;</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Test</th>
+                <th>Metric</th>
+                <th>Mean Optitrack</th>
+                <th>Mean Camera</th>
+                <th>MAPE (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Gait Speed -->
+            <tr>
+                <td class="custom-name">Gait Speed</td>
+                <td><b>Time (s)</b></td>
+                <td>4.71</td>
+                <td>4.76</td>
+                <td><b>4.73</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Left Stride Length (m)</td>
+                <td>1.25</td>
+                <td>1.16</td>
+                <td><b>8.41</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Left Stride Velocity (m/s)</td>
+                <td>0.99</td>
+                <td>0.96</td>
+                <td><b>5.12</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Left Step Length (m)</td>
+                <td>0.67</td>
+                <td>0.52</td>
+                <td>22.26</td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Left Step Velocity (m/s)</td>
+                <td>1.07</td>
+                <td>0.93</td>
+                <td>15.49</td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Right Stride Length (m)</td>
+                <td>1.24</td>
+                <td>1.13</td>
+                <td><b>9.53</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Right Stride Velocity (m/s)</td>
+                <td>0.99</td>
+                <td>0.97</td>
+                <td><b>5.34</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Right Step Length (m)</td>
+                <td>0.66</td>
+                <td>0.67</td>
+                <td><b>12.26</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Right Step Velocity (m/s)</td>
+                <td>1.05</td>
+                <td>1.09</td>
+                <td><b>11.32</b></td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Range Balance (m)</td>
+                <td>0.05</td>
+                <td>0.08</td>
+                <td>68.74</td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Mean Balance (m)</td>
+                <td>0.03</td>
+                <td>0.04</td>
+                <td>66.02</td>
+            </tr>
+            <tr>
+                <td>Gait Speed</td>
+                <td>Number Steps</td>
+                <td>7.11</td>
+                <td>7.68</td>
+                <td><b>11.11</b></td>
+            </tr>
+            <!-- TUG -->
+            <tr>
+                <td>TUG</td>
+                <td><b>Time (s)</b></td>
+                <td>9.29</td>
+                <td>9.36</td>
+                <td><b>2.03</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Left Stride Length (m)</td>
+                <td>1.11</td>
+                <td>1</td>
+                <td><b>12.41</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Left Stride Velocity (m/s)</td>
+                <td>0.86</td>
+                <td>0.81</td>
+                <td><b>9.5</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Left Step Length (m)</td>
+                <td>0.59</td>
+                <td>0.56</td>
+                <td><b>13.09</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Left Step Velocity (m/s)</td>
+                <td>0.92</td>
+                <td>0.91</td>
+                <td><b>9.73</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Right Stride Length (m)</td>
+                <td>1.06</td>
+                <td>1.02</td>
+                <td><b>9.27</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Right Stride Velocity (m/s)</td>
+                <td>0.82</td>
+                <td>0.79</td>
+                <td><b>6.52</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Right Step Length (m)</td>
+                <td>0.59</td>
+                <td>0.52</td>
+                <td><b>13.54</b></td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Right Step Velocity (m/s)</td>
+                <td>0.94</td>
+                <td>0.8</td>
+                <td>15.41</td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Range Balance (m)</td>
+                <td>0.57</td>
+                <td>0.48</td>
+                <td>17.47</td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Mean Balance (m)</td>
+                <td>0.42</td>
+                <td>0.33</td>
+                <td>20.55</td>
+            </tr>
+            <tr>
+                <td>TUG</td>
+                <td>Number Steps</td>
+                <td>14</td>
+                <td>13.78</td>
+                <td><b>9.52</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td><b>Time Together (s)</b></td>
+                <td>10</td>
+                <td>10</td>
+                <td><b>0</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td><b>Time Semi-Tandem (s)</b></td>
+                <td>10</td>
+                <td>10</td>
+                <td><b>0</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td><b>Time Tandem (s)</b></td>
+                <td>10</td>
+                <td>10</td>
+                <td><b>0</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td>Box Together (m<sup>3</sup>)</td>
+                <td>0.0021</td>
+                <td>0.0019</td>
+                <td><b>14.98</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td>Box Semi-Tandem (m<sup>3</sup>)</td>
+                <td>0.0001</td>
+                <td>0.0002</td>
+                <td>69.51</td>
+            </tr>
+            <tr>
+                <td>Standing Balance</td>
+                <td>Box Tandem (m<sup>3</sup>)</td>
+                <td>0.0011</td>
+                <td>0.0008</td>
+                <td>33.87</td>
+            </tr>
+            <tr>
+                <td>5 Times Sit-Stand</td>
+                <td>Time (s)</td>
+                <td>21.83</td>
+                <td>22.04</td>
+                <td><b>1.2</b></td>
+            </tr>
+            <tr>
+                <td>5 Times Sit-Stand</td>
+                <td>Fatigue (s)</td>
+                <td>1.55</td>
+                <td>1.29</td>
+                <td>24.91</td>
+            </tr>
+            <tr>
+                <td>5 Times Sit-Stand</td>
+                <td>Number Sequences</td>
+                <td>5</td>
+                <td>5</td>
+                <td><b>0</b></td>
+            </tr>
+            
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+    <h2>Validation Results</h2>
+    <p>
+        The individual samples for each of the metrics are plotted below. 
+        Every plot contains the values of the same metric for all the different runs.
+        The plots compare the value acquired with the ZED SDK (y-axis) and the OptiTrack (x-axis).
+        The linear regression is also plotted in each graphic (orange line), with the identity (green line) which can be used as a reference to check the proper fit of the data. 
+        The plots also show the precision and the repeatability of the data, when the samples are closer to the identity line, they are considered more precise.    
+    </p>
+    <p>&nbsp;</p>
+
+    <h3>Gait Speed Results</h3>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Time (s)</p>
+                <img src="img/4m_walk_experiment_gait_time.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Stride Length (m)</p>
+                <img src="img/4m_walk_experiment_left_stride_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Stride Velocity (m/s)</p>
+                <img src="img/4m_walk_experiment_left_stride_velocity.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Step Length (m)</p>
+                <img src="img/4m_walk_experiment_left_step_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Step Velocity (m/s)</p>
+                <img src="img/4m_walk_experiment_left_step_velocity.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Stride Length (m)</p>
+                <img src="img/4m_walk_experiment_right_stride_length.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Stride Velocity (m/s)</p>
+                <img src="img/4m_walk_experiment_right_stride_velocity.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Step Length (m)</p>
+                <img src="img/4m_walk_experiment_right_step_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Step Velocity (m/s)</p>
+                <img src="img/4m_walk_experiment_right_step_velocity.png" width = "320" height="240"/>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Balance Ranges (m)</p>
+                <img src="img/4m_walk_experiment_balance_ranges.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Balance Mean (m)</p>
+                <img src="img/4m_walk_experiment_balance_mean.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Number Steps</p>
+                <img src="img/4m_walk_experiment_num_steps.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+    <h3>TUG Results</h3>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Time (s)</p>
+                <img src="img/TUG_experiment_time.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Stride Length (m)</p>
+                <img src="img/TUG_experiment_left_stride_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Stride Velocity (m/s)</p>
+                <img src="img/TUG_experiment_left_stride_velocity.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Step Length (m)</p>
+                <img src="img/TUG_experiment_left_step_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Left Step Velocity (m/s)</p>
+                <img src="img/TUG_experiment_left_step_velocity.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Stride Length (m)</p>
+                <img src="img/TUG_experiment_right_stride_length.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Stride Velocity (m/s)</p>
+                <img src="img/TUG_experiment_right_stride_velocity.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Step Length (m)</p>
+                <img src="img/TUG_experiment_right_step_length.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Right Step Velocity (m/s)</p>
+                <img src="img/TUG_experiment_right_step_velocity.png" width = "320" height="240"/>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Balance Ranges (m)</p>
+                <img src="img/TUG_experiment_balance_ranges.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Balance Mean (m)</p>
+                <img src="img/TUG_experiment_balance_mean.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Number Steps</p>
+                <img src="img/TUG_experiment_num_steps.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+    <h3>Standing Balance Results</h3>
+
+        <!--div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Time Together (s)</p>
+                <img src="img/SPPBBalance_experiment_time_feet_together.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Time Semi-Tandem (s)</p>
+                <img src="img/SPPBBalance_experiment_time_feet_semitandem.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Time Tandem (s)</p>
+                <img src="img/SPPBBalance_experiment_time_feet_tandem.png" width = "320" height="240"/>
+            </div>
+        </div-->
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Box Together (m<sup>3</sup>)</p>
+                <img src="img/SPPBBalance_experiment_box_together.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Box Semi-Tandem (m<sup>3</sup>)</p>
+                <img src="img/SPPBBalance_experiment_box_semi.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Box Tandem (m<sup>3</sup>)</p>
+                <img src="img/SPPBBalance_experiment_box_tandem.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        <h3>5 Times Sit-Stand Results</h3>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Time (s)</p>
+                <img src="img/SPPBChair_experiment_duration.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>Fatigue (s)</p>
+                <img src="img/SPPBChair_experiment_fatigue.png" width = "320" height="240"/>
+            </div>
+            <!--div style="display: inline-block; margin: 10px">
+                <p>Number Sit-Stands</p>
+                <img src="img/SPPBChair_experiment_cycles_number.png" width = "320" height="240"/>
+            </div-->
+        </div>
+
+
+
+
+</div>
