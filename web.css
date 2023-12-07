@@ -15,7 +15,7 @@ html, body {
 
 h1{ 
 	font-size: 18px;
-	color: #fff;
+	color: #c80000;
     font-family: 'Arial', sans-serif;
 }
 
@@ -97,7 +97,7 @@ h5 a img{	vertical-align:bottom;}
 
 p{
     font-family: 'Open Sans', sans-serif;	
-	font-size: 13px;
+	font-size: 15px;
 	margin: 0 1em 0.8em 20px;
 	clear:both;
 }
