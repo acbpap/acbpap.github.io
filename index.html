@@ -48,14 +48,97 @@
     </p>
 
     <p>
-        A distribution example for the tests is shown in Figure 1.
+        The experimental setting for the tests is shown in Figure 1.
     </p>
 
     <center>
     <img src="img/test_distribution_arrows.png" width = "400" height="450" />
-    <figcaption><b>Figure 1.</b> Space distribution and representation for the execution of the SPPB and TUG tests.
+    <figcaption><b>Figure 1.</b> The experimental setting of the SPPB and TUG tests for the frailty assessment.
     </center>
     <p>&nbsp;</p>
+
+    
+    <h2>Results from the Pilot Study at the Hospital</h2>
+    <p>&nbsp;</p>
+    <p>
+        The comparison of the tests between the doctor and our method is shown in this section. 
+        A table shows the mean metric differences for each test. For the Gait Speed, Tug, and 5-times sit-stand the metric is the time.
+        The Standing Balance measure is a number based on the results of the times of each feet position. For the tandem position, if the balance is kept for 10 seconds, it scores two points,
+        if it is kept between 3 and 10 seconds, it scores 1 point, and it gets 0 poitns on the contrary.  
+    </p>
+    <center>
+    <table>
+        <thead>
+            <tr>
+                <th>Test Metrics</th>
+                <th>Mean Doctor</th>
+                <th>Mean Camera</th>
+                <th>R</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Gait Speed -->
+            <tr>
+                <td>Gait Speed Time (s)</td>
+                <td>2.95</td>
+                <td>3.06</td>
+                <td><b>0.92</b></td>
+            </tr>
+            <tr>
+                <td>TUG Time (s)</td>
+                <td>7.68</td>
+                <td>7.01</td>
+                <td><b>0.94</b></td>
+            </tr>
+            <tr>
+                <td>5 Times Sit-Stand Time (s)</td>
+                <td>10.82</td>
+                <td>10.53</td>
+                <td><b>0.98</b></td>
+            </tr>
+            <tr>
+                <td>Standing Balance Score</td>
+                <td>3.95</td>
+                <td>4</td>
+                <td>0.0</td>
+            </tr>
+            
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+    </center>
+
+    <p>
+        It can be seen that the times are computed properly, with an R factor higher than 0.9 in all cases. Meaning that the metrics are highly similar.
+        In the case of the Standing Balance, the R is 0 due to the same results for the camera, being the same in all cases is translated into a 0 because it cannot be computed.  
+    </p>
+
+    <h3>Results Plots</h3>
+
+    <p>
+        The individual samples for each of the times are plotted below. 
+        The plots compare the value acquired with the camera (y-axis) and the doctor (x-axis).
+        The linear regression is also plotted in each graphic (orange line), with the identity (green line) which can be used as a reference to check the proper fit of the data. 
+        The plots also show the precision and the repeatability of the data, when the samples are closer to the identity line, they are considered more precise.    
+    </p>
+
+    
+        <div style="text-align: center;">
+            <div style="display: inline-block; margin: 10px">
+                <p>Gait Speed Times (s)</p>
+                <img src="img/vel.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>TUG Times (s)</p>
+                <img src="img/tug.png" width = "320" height="240"/>
+            </div>
+            <div style="display: inline-block; margin: 10px">
+                <p>5 Times Sit-Stand Times (s)</p>
+                <img src="img/stand.png" width = "320" height="240"/>
+            </div>
+        </div>
+
+        
     <h2>Tracking System Validation </h2>
 
     <p>&nbsp;</p>
@@ -500,84 +583,5 @@
         </div>
 
     
-    <h2>Pilot Study at hospital Results</h2>
-    <p>&nbsp;</p>
-    <p>
-        The comparison of the tests between the doctor and our method is shown in this section. 
-        A table shows the mean metric differences for each test. For the Gait Speed, Tug, and 5-times sit-stand the metric is the time.
-        The Standing Balance measure is a number based on the results of the times of each feet position. For the tandem position, if the balance is kept for 10 seconds, it scores two points,
-        if it is kept between 3 and 10 seconds, it scores 1 point, and it gets 0 poitns on the contrary.  
-    </p>
-    <center>
-    <table>
-        <thead>
-            <tr>
-                <th>Test Metrics</th>
-                <th>Mean Doctor</th>
-                <th>Mean Camera</th>
-                <th>R</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Gait Speed -->
-            <tr>
-                <td>Gait Speed Time (s)</td>
-                <td>2.95</td>
-                <td>3.06</td>
-                <td><b>0.92</b></td>
-            </tr>
-            <tr>
-                <td>TUG Time (s)</td>
-                <td>7.68</td>
-                <td>7.01</td>
-                <td><b>0.94</b></td>
-            </tr>
-            <tr>
-                <td>5 Times Sit-Stand Time (s)</td>
-                <td>10.82</td>
-                <td>10.53</td>
-                <td><b>0.98</b></td>
-            </tr>
-            <tr>
-                <td>Standing Balance Score</td>
-                <td>3.95</td>
-                <td>4</td>
-                <td>0.0</td>
-            </tr>
-            
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
-    </center>
-
-    <p>
-        It can be seen that the times are computed properly, with an R factor higher than 0.9 in all cases. Meaning that the metrics are highly similar.
-        In the case of the Standing Balance, the R is 0 due to the same results for the camera, being the same in all cases is translated into a 0 because it cannot be computed.  
-    </p>
-
-    <h3>Results Plots</h3>
-
-    <p>
-        The individual samples for each of the times are plotted below. 
-        The plots compare the value acquired with the camera (y-axis) and the doctor (x-axis).
-        The linear regression is also plotted in each graphic (orange line), with the identity (green line) which can be used as a reference to check the proper fit of the data. 
-        The plots also show the precision and the repeatability of the data, when the samples are closer to the identity line, they are considered more precise.    
-    </p>
-
-    
-        <div style="text-align: center;">
-            <div style="display: inline-block; margin: 10px">
-                <p>Gait Speed Times (s)</p>
-                <img src="img/vel.png" width = "320" height="240"/>
-            </div>
-            <div style="display: inline-block; margin: 10px">
-                <p>TUG Times (s)</p>
-                <img src="img/tug.png" width = "320" height="240"/>
-            </div>
-            <div style="display: inline-block; margin: 10px">
-                <p>5 Times Sit-Stand Times (s)</p>
-                <img src="img/stand.png" width = "320" height="240"/>
-            </div>
-        </div>
 
 </div>
